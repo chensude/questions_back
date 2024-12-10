@@ -1,5 +1,8 @@
 package com.example.service;
 
+import com.example.model.ApiResponse;
+
 public interface WxAuthService {
-    // 定义需要的方法
+    ApiResponse login(String code);
+    ApiResponse updateUserInfo(String token, String nickName, String avatarUrl);
 } 
