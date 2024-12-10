@@ -2,7 +2,7 @@ name: Deploy to Server
 
 on:
   push:
-    branches: [ master ]  # 改为 master
+    branches: [ master ]
 
 jobs:
   deploy:
@@ -38,4 +38,4 @@ jobs:
             git pull
             docker-compose down
             docker rmi questions-back
-            docker-compose up -d --build 
+            docker-compose up -d --build

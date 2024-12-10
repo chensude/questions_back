@@ -3,13 +3,17 @@ package com.example.controller;
 import com.example.entity.User;
 import com.example.service.WxAuthService;
 import com.example.model.ApiResponse;
-import io.swagger.annotations.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Api(tags = "微信认证接口")
+@Tag(name = "微信认证接口")
 @RestController
 @RequestMapping("/api/wx")
 @Slf4j
@@ -18,14 +22,14 @@ public class WxAuthController {
     @Autowired
     private WxAuthService wxAuthService;
 
-    @ApiOperation("微信登录")
-    @ApiResponses({
-        @ApiResponse(code = 200, message = "Success"),
-        @ApiResponse(code = 400, message = "Bad Request")
+    @Operation(summary = "微信登录")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Success"),
+        @ApiResponse(responseCode = "400", description = "Bad Request")
     })
     @PostMapping("/login")
     public ResponseEntity<?> login(
-            @ApiParam(value = "微信登录code", required = true) 
+            @Parameter(description = "微信登录code")
             @RequestParam String code) {
         try {
             return ResponseEntity.ok(wxAuthService.login(code));
@@ -35,14 +39,14 @@ public class WxAuthController {
         }
     }
 
-    @ApiOperation("更新用户信息")
+    @Operation(summary = "更新用户信息")
     @PutMapping("/userInfo")
     public ResponseEntity<?> updateUserInfo(
-            @ApiParam(value = "用户token", required = true) 
+            @Parameter(description = "用户token")
             @RequestHeader("token") String token,
-            @ApiParam(value = "用户昵称", required = true) 
+            @Parameter(description = "用户昵称")
             @RequestParam String nickName,
-            @ApiParam(value = "头像地址", required = true) 
+            @Parameter(description = "头像地址")
             @RequestParam String avatarUrl) {
         try {
             return ResponseEntity.ok(wxAuthService.updateUserInfo(token, nickName, avatarUrl));
