@@ -22,10 +22,6 @@ public class WxAuthController {
     private final WxAuthService wxAuthService;
 
     @Operation(summary = "微信登录")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "登录成功"),
-        @ApiResponse(responseCode = "400", description = "登录失败")
-    })
     @PostMapping("/login")
     public ApiResponse login(@RequestBody LoginRequest request) {
         try {

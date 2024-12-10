@@ -29,14 +29,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class QuestionController {
     
-    @Autowired
-    private WordParserService wordParserService;
-    
-    @Autowired
-    private QuestionRepository questionRepository;
-    
-    @Autowired
-    private UserRepository userRepository;
+    private final WordParserService wordParserService;
+    private final QuestionRepository questionRepository;
+    private final UserRepository userRepository;
     
     @Operation(summary = "上传Word文件")
     @PostMapping("/upload")
