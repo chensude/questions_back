@@ -21,7 +21,7 @@ jobs:
         
       - name: Check Secrets
         run: |
-          if [ -z "${{ secrets.SERVER_HOST }}" ]; then
+          if [ -z "${{ 101.34.34.218 }}" ]; then
             echo "SERVER_HOST is empty"
             exit 1
           fi
