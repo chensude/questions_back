@@ -19,6 +19,14 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -DskipTests
         
+      - name: Check Secrets
+        run: |
+          if [ -z "${{ secrets.SERVER_HOST }}" ]; then
+            echo "SERVER_HOST is empty"
+            exit 1
+          fi
+          echo "SERVER_HOST exists"
+        
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
         with:
