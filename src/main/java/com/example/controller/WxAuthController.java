@@ -20,8 +20,8 @@ public class WxAuthController {
 
     @ApiOperation("微信登录")
     @ApiResponses({
-        @ApiResponse(code = 200, message = "登录成功"),
-        @ApiResponse(code = 400, message = "登录失败")
+        @ApiResponse(code = 200, message = "Success"),
+        @ApiResponse(code = 400, message = "Bad Request")
     })
     @PostMapping("/login")
     public ResponseEntity<?> login(
