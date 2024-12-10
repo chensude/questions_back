@@ -30,8 +30,6 @@ jobs:
             cd /www/wwwroot/questions_back
             git pull
             mvn clean package -DskipTests
-            pid=$(ps -ef | grep question-bank | grep -v grep | awk '{print $2}')
-            if [ -n "$pid" ]; then
-              kill -9 $pid
-            fi
-            nohup java -jar target/question-bank-1.0-SNAPSHOT.jar --spring.profiles.active=prod > nohup.out 2>&1 &
+            docker-compose down
+            docker rmi questions-back
+            docker-compose up -d --build

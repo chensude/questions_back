@@ -5,16 +5,4 @@ services:
     container_name: questions-back
     ports:
       - "8080:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-    restart: always
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-
-  # 添加 watchtower 服务来自动更新容器
-  watchtower:
-    image: containrrr/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 30
     restart: always 
