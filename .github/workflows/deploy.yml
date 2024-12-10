@@ -28,10 +28,6 @@ jobs:
           password: ^SZ.5qy7xfw4[
           port: 22
           script: |
-            # 添加 GitHub 的 DNS 解析
-            echo "199.232.69.194 github.global.ssl.fastly.net" >> /etc/hosts
-            echo "140.82.114.4 github.com" >> /etc/hosts
-            
             cd /www/wwwroot/questions_back
             git pull
             mvn clean package -DskipTests
