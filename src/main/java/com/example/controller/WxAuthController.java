@@ -23,14 +23,12 @@ public class WxAuthController {
     private WxAuthService wxAuthService;
 
     @Operation(summary = "微信登录")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Success"),
-        @ApiResponse(responseCode = "400", description = "Bad Request")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "登录成功"),
+        @ApiResponse(responseCode = "400", description = "登录失败")
     })
     @PostMapping("/login")
-    public ResponseEntity<?> login(
-            @Parameter(description = "微信登录code")
-            @RequestParam String code) {
+    public com.example.model.ApiResponse login(@RequestBody LoginRequest request) {
         try {
             return ResponseEntity.ok(wxAuthService.login(code));
         } catch (Exception e) {

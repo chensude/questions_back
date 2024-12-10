@@ -14,14 +14,16 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import io.swagger.annotations.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.HashMap;
 import java.util.List;
 
-@Api(tags = "题库管理接口")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/questions")
+@Tag(name = "问题管理", description = "问题的增删改查接口")
 @Slf4j
 public class QuestionController {
     
@@ -34,12 +36,12 @@ public class QuestionController {
     @Autowired
     private UserRepository userRepository;
     
-    @ApiOperation("上传Word文件")
+    @Operation(summary = "上传Word文件")
     @PostMapping("/upload")
     public ResponseEntity<?> uploadFile(
-            @ApiParam(value = "Word文件", required = true) 
+            @Parameter(description = "Word文件", required = true) 
             @RequestParam("file") MultipartFile file,
-            @ApiParam(value = "用户token", required = true) 
+            @Parameter(description = "用户token", required = true) 
             @RequestHeader("token") String token) {
         try {
             User user = userRepository.findByOpenid(token)
@@ -65,16 +67,16 @@ public class QuestionController {
         }
     }
     
-    @ApiOperation("获取题目列表")
-    @GetMapping("/questions")
+    @Operation(summary = "获取题目列表")
+    @GetMapping
     public ResponseEntity<?> getQuestions(
-            @ApiParam("题目类型") 
+            @Parameter(description = "题目类型") 
             @RequestParam(required = false) String questionType,
-            @ApiParam("页码") 
+            @Parameter(description = "页码") 
             @RequestParam(defaultValue = "1") int page,
-            @ApiParam("每页数量") 
+            @Parameter(description = "每页数量") 
             @RequestParam(defaultValue = "10") int pageSize,
-            @ApiParam(value = "用户token", required = true) 
+            @Parameter(description = "用户token", required = true) 
             @RequestHeader("token") String token) {
         try {
             User user = userRepository.findByOpenid(token)
