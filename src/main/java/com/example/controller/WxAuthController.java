@@ -9,17 +9,17 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "微信认证接口")
 @RestController
 @RequestMapping("/api/wx")
 @Slf4j
+@RequiredArgsConstructor
 public class WxAuthController {
 
-    @Autowired
-    private WxAuthService wxAuthService;
+    private final WxAuthService wxAuthService;
 
     @Operation(summary = "微信登录")
     @ApiResponses(value = {

@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.List;
 @RequestMapping("/api/questions")
 @Tag(name = "问题管理", description = "问题的增删改查接口")
 @Slf4j
+@RequiredArgsConstructor
 public class QuestionController {
     
     @Autowired
